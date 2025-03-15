@@ -1,0 +1,16 @@
+name: to_ecr
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: run
+        with:
+          script: |
+            sh run.sh
