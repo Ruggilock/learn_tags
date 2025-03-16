@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - v*
+env:
+ CI_COMMIT_REF_NAME: ${{ github.ref_name }}
 
 jobs:
   build:
@@ -11,4 +13,4 @@ jobs:
       - run: echo "Deploying to production server on branch $GITHUB_REF"
       - uses: actions/checkout@v4
       - name: Run a script
-        run: ./my-script.sh
+        run: echo $CI_COMMIT_REF_NAME
